@@ -5,7 +5,7 @@ import { Button, FloatingLabel, Form } from "react-bootstrap";
 class ContactForm extends Component {
 
   render() {
-    const { validated, task, handleValue, selected, handleSubmit } = this.props;
+    const { validated, contact, handleValue, selected, handleSubmit } = this.props;
 
     return (
       <Fragment>
@@ -21,7 +21,7 @@ class ContactForm extends Component {
             className="mb-3"
 
           >
-            <Form.Control required type="text" placeholder="First Name" onChange={handleValue} value={task.firstName} />
+            <Form.Control required type="text" placeholder="First Name" onChange={handleValue} value={contact.firstName} />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">Please fill!</Form.Control.Feedback>
           </FloatingLabel>
@@ -30,7 +30,7 @@ class ContactForm extends Component {
             controlId="lastName"
             label="Last Name"
           >
-            <Form.Control required type="text" placeholder="Last Name" onChange={handleValue} value={task.lastName} />
+            <Form.Control required type="text" placeholder="Last Name" onChange={handleValue} value={contact.lastName} />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">Please fill!</Form.Control.Feedback>
           </FloatingLabel>
@@ -39,7 +39,7 @@ class ContactForm extends Component {
             controlId="relationship"
             label="Choose relationship"
           >
-            <Form.Select required aria-label="Choose relationship" onChange={handleValue} value={task.relationship} >
+            <Form.Select required aria-label="Choose relationship" onChange={handleValue} value={contact.relationship} >
               <option value="other">Other</option>
               <option value="family">Family</option>
               <option value="friends">Friends</option>
@@ -54,7 +54,7 @@ class ContactForm extends Component {
             label="Phone Number"
             required
           >
-            <Form.Control required type="number" placeholder="Phone Number" onChange={handleValue} value={task.phoneNumber} />
+            <Form.Control required type="number" placeholder="Phone Number" onChange={handleValue} value={contact.phoneNumber} />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">Please fill!</Form.Control.Feedback>
           </FloatingLabel>

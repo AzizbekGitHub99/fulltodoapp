@@ -3,12 +3,12 @@ import { Container } from "react-bootstrap";
 import ContactForm from "../../components/form/ContactForm";
 import ContactList from "../../components/list/ContactList";
 
-const JSONtasks = localStorage.getItem("tasks");
+const JSONcontacts = localStorage.getItem("contacts");
 
 class HomePage extends Component {
   state = {
     validated: false,
-    tasks: JSON.parse(JSONtasks) || [
+    contacts: JSON.parse(JSONcontacts) || [
       {
         id: 1,
         firstName: "Edward",
@@ -34,7 +34,7 @@ class HomePage extends Component {
         favorite: false,
       },
     ],
-    task: {
+    contact: {
       firstName: "",
       lastName: "",
       relationship: "other",
@@ -49,15 +49,15 @@ class HomePage extends Component {
     },
   };
   render() {
-    let newTasks = [];
+    let newContacts = [];
     const handleSubmit = (e) => {
       e.preventDefault();
       const form = e.currentTarget;
       if (form.checkValidity()) {
         if (selected) {
-          newTasks = tasks.map((el) => {
-            if (el.id === task.id) {
-              return task;
+          newContacts = contacts.map((el) => {
+            if (el.id === contact.id) {
+              return contact;
             } else {
               return el;
             }
@@ -66,14 +66,14 @@ class HomePage extends Component {
           this.setState({ validated: false });
 
         } else {
-          newTasks = [...tasks, { ...task, id: Date.now(), favorite: false }];
+          newContacts = [...contacts, { ...contact, id: Date.now(), favorite: false }];
         }
         this.setState({
-          tasks: newTasks,
+          contacts: newContacts,
         });
-        localStorage.setItem("tasks", JSON.stringify(newTasks));
+        localStorage.setItem("contacts", JSON.stringify(newContacts));
         this.setState({
-          task: {
+          contact: {
             firstName: "",
             lastName: "",
             relationship: "other",
@@ -86,47 +86,47 @@ class HomePage extends Component {
     };
     const handleValue = (e) => {
       this.setState({
-        task: { ...task, [e.target.id]: e.target.value },
+        contact: { ...contact, [e.target.id]: e.target.value },
       });
     };
 
     const handleDelete = (id) => {
-      newTasks = tasks.filter((el) => el.id !== id);
-      this.setState({ tasks: newTasks });
-      localStorage.setItem("tasks", JSON.stringify(newTasks));
+      newContacts = contacts.filter((el) => el.id !== id);
+      this.setState({ contacts: newContacts });
+      localStorage.setItem("contacts", JSON.stringify(newContacts));
     };
 
     const handleEdit = (id) => {
-      let newTask = tasks.find((el) => el.id === id);
+      let newContact = contacts.find((el) => el.id === id);
       this.setState({ selected: id });
-      this.setState({ task: newTask });
+      this.setState({ contact: newContact });
     };
 
     const toggleFavorite = (id) => {
-      newTasks = tasks.map((el) => {
+      newContacts = contacts.map((el) => {
         if (el.id === id) {
-          let newTask = { ...el, favorite: !el.favorite };
-          return newTask;
+          let newContact = { ...el, favorite: !el.favorite };
+          return newContact;
         } else {
           return el;
         }
       });
-      this.setState({ tasks: newTasks });
-      localStorage.setItem("tasks", JSON.stringify(newTasks));
+      this.setState({ contacts: newContacts });
+      localStorage.setItem("contacts", JSON.stringify(newContacts));
     };
-    const { validated, tasks, task, selected, colors } = this.state;
+    const { validated, contacts, contact, selected, colors } = this.state;
     return (
       <Container>
         <ContactForm
           validated={validated}
           handleSubmit={handleSubmit}
           handleValue={handleValue}
-          tasks={tasks}
-          task={task}
+          contacts={contacts}
+          contact={contact}
           selected={selected}
         />
         <ContactList
-          tasks={tasks}
+          contacts={contacts}
           colors={colors}
           handleDelete={handleDelete}
           handleEdit={handleEdit}

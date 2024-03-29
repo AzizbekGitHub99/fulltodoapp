@@ -13,7 +13,7 @@ class ContactCard extends Component {
       colors,
       toggleFavorite,
       handleDelete,
-      handleEdit
+      handleEdit,
     } = this.props;
     return (
       <Card className="my-3">
@@ -21,7 +21,7 @@ class ContactCard extends Component {
           <Row>
             <Col sm={8}>
               <Card.Title>
-                {firstName} {lastName}{" "}
+                {firstName} {lastName}
                 <Badge pill bg={colors[relationship]}>
                   {relationship}
                 </Badge>
@@ -67,7 +67,9 @@ class ContactCard extends Component {
                   />
                 </svg>
               )}
-              <Button variant="primary" onClick={()=> handleEdit(id)}>Edit</Button>
+              <Button variant="primary" onClick={() => handleEdit(id)}>
+                Edit
+              </Button>
               <Button variant="danger" onClick={() => handleDelete(id)}>
                 Delete
               </Button>
