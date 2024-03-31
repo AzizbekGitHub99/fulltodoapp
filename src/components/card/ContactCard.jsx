@@ -22,7 +22,7 @@ class ContactCard extends Component {
             <Col sm={8}>
               <Card.Title>
                 {firstName} {lastName}
-                <Badge pill bg={colors[relationship]}>
+                <Badge className="mx-3" pill bg={colors[relationship]}>
                   {relationship}
                 </Badge>
               </Card.Title>
